@@ -1,3 +1,5 @@
+require 'date'
+
 class Enigma
   attr_accessor :key, :date
 

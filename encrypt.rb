@@ -7,7 +7,9 @@ message = File.read(file_with_message_to_encrypt)
 puts "What file do you want to write your encrypted message in?"
 file_to_write_to = gets.chomp
 encrypted_message = File.open(file_to_write_to, "w")
-encrypted_message.write((enigma.encrypt(message))[:encryption])
+encryption = enigma.encrypt(message)
+encrypted_message.write(encryption[:encryption])
+require "pry"; binding.pry
 encrypted_message.close
 
-puts "Created #{file_to_write_to} with the key #{(enigma.encrypt(message))[:key]} and date #{(enigma.encrypt(message))[:date]}"
+puts "Created #{file_to_write_to} with the key #{(encryption[:key])} and date #{encryption[:date]}"

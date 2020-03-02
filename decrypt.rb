@@ -12,8 +12,8 @@ key = gets.chomp.to_s
 puts "What is the date for decryption?"
 date = gets.chomp.to_s
 
-require "pry"; binding.pry
-decrypted_message.write((enigma.decrypt(message, key, date))[:decryption])
+decryption = enigma.decrypt(message, key, date)
+decrypted_message.write(decryption[:decryption])
 decrypted_message.close
 
 puts "Created #{file_to_write_to} with the key #{key} and date #{date}"
