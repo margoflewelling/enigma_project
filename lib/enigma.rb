@@ -1,37 +1,7 @@
 class Enigma
-
-  def initialize
-  end
-
   attr_accessor :key, :date
 
-  def encrypt_message(message, key, date)
-    message_letters = split_message(message)
-    encrypted = ""
-    loop do
-      index = alphabet.index(message_letters[0])
-      encrypted << alphabet.rotate(final_shift(key, date)["A"])[index]
-      break if encrypted.length == message_letters.length
-      index = alphabet.index(message_letters[1])
-      encrypted << alphabet.rotate(final_shift(key, date)["B"])[index]
-      break if encrypted.length == message_letters.length
-      index = alphabet.index(message_letters[2])
-      encrypted << alphabet.rotate(final_shift(key, date)["C"])[index]
-      break if encrypted.length == message_letters.length
-      index = alphabet.index(message_letters[3])
-      encrypted << alphabet.rotate(final_shift(key, date)["D"])[index]
-      break if encrypted.length == message_letters.length
-      message_letters = message_letters.rotate(4)
-     end
-     encrypted
-  end
-
-  def split_message(message)
-    clean_message = ""
-    message.each_char do |char|
-      clean_message << char if alphabet.include?(char)
-     end
-    clean_message.split("")
+  def initialize
   end
 
   def alphabet
@@ -64,6 +34,31 @@ class Enigma
       final_shift[num_key] = key.to_i + create_offsets(date)[num_key].to_i
     end
     final_shift
+  end
+
+  def split_message(message)
+    message.split("")
+  end
+
+  def encrypt_message(message, key, date)
+    message_letters = split_message(message)
+    encrypted = ""
+    loop do
+      index = alphabet.index(message_letters[0])
+      encrypted << alphabet.rotate(final_shift(key, date)["A"])[index]
+      break if encrypted.length == message_letters.length
+      index = alphabet.index(message_letters[1])
+      encrypted << alphabet.rotate(final_shift(key, date)["B"])[index]
+      break if encrypted.length == message_letters.length
+      index = alphabet.index(message_letters[2])
+      encrypted << alphabet.rotate(final_shift(key, date)["C"])[index]
+      break if encrypted.length == message_letters.length
+      index = alphabet.index(message_letters[3])
+      encrypted << alphabet.rotate(final_shift(key, date)["D"])[index]
+      break if encrypted.length == message_letters.length
+      message_letters = message_letters.rotate(4)
+     end
+     encrypted
   end
 
 end
