@@ -26,6 +26,10 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, @enigma.create_keys("02715")
   end
 
+  def test_getting_last_four_of_date_squared
+    assert_equal "8400", @enigma.last_four("030220")
+  end
+
   def test_it_can_create_the_offset
     expected = {"A"=>"1", "B"=>"0", "C"=>"2", "D"=>"5"}
     assert_equal expected, @enigma.create_offsets("040895")
@@ -56,7 +60,7 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_decrypt
     expected = {decryption: "hello world", key: "02715", date: "040895"}
-    
+
     assert_equal expected, @enigma.decrypt("keder ohulw", "02715", "040895")
   end
 

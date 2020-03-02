@@ -20,14 +20,18 @@ class Enigma
   end
 
   def create_offsets(date)
-    date_squared = (date.to_i * date.to_i).to_s
-    last_four = date_squared[-4..-1]
+    last_four_digits = last_four(date)
     offsets = {}
-    offsets["A"] = last_four[0]
-    offsets["B"] = last_four[1]
-    offsets["C"] = last_four[2]
-    offsets["D"] = last_four[3]
+    offsets["A"] = last_four_digits[0]
+    offsets["B"] = last_four_digits[1]
+    offsets["C"] = last_four_digits[2]
+    offsets["D"] = last_four_digits[3]
     offsets
+  end
+
+  def last_four(date)
+    date_squared = (date.to_i * date.to_i).to_s
+    date_squared[-4..-1]
   end
 
   def final_shift(key, date)
