@@ -80,5 +80,12 @@ class Enigma
     decrypted
   end
 
+  def decrypt(message, key, date = today)
+    decryption = {}
+    decryption[:decryption] = decrypt_message(message, key, date)
+    decryption[:key] = key
+    decryption[:date] = date
+    decryption
+  end
 
 end
