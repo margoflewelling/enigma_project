@@ -88,4 +88,13 @@ class Enigma
     decryption
   end
 
+  def encrypt(message, key = create_random_key, date = today)
+    encryption = {}
+    encryption[:encryption] = encrypt_message(message, key, date)
+    encryption[:key] = key
+    encryption[:date] = date
+    encryption
+  end
+
+
 end
