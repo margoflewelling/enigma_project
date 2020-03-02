@@ -45,11 +45,13 @@ class EnigmaTest < Minitest::Test
   def test_it_can_encrypt_message
     assert_equal "keder ohulw", @enigma.encrypt_message("hello world", "02715", "040895")
     assert_equal "pysgdmxtlssfdrzh", @enigma.encrypt_message("my name is margo", "02715", "040895")
+    assert_equal "py-gdmx-ls:fdrzh", @enigma.encrypt_message("my-name-is:margo", "02715", "040895")
   end
 
   def test_it_can_decrypt_message
     assert_equal "hello world", @enigma.decrypt_message("keder ohulw", "02715", "040895")
     assert_equal "my name is margo", @enigma.decrypt_message("pysgdmxtlssfdrzh", "02715", "040895")
+    assert_equal "my-name-is:margo", @enigma.decrypt_message("py-gdmx-ls:fdrzh", "02715", "040895")
   end
 
   def test_it_can_decrypt
