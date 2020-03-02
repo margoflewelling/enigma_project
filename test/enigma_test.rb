@@ -96,4 +96,10 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, @enigma.decrypt("gsdsnnovqzw", "53734")
   end
 
+  def test_creating_cryption
+    skip
+    assert_equal "sor", @enigma.create_cryption("forward", "encryption", ["h", "e", "l"], "30605", "030220")
+    assert_equal "hel", @enigma.create_cryption("backward", "decryption", ["s", "o", "r"], "30605", "030220")
+  end
+
 end
