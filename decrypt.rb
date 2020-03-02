@@ -1,16 +1,12 @@
 require './lib/enigma'
 enigma = Enigma.new
 
-puts "Where is the file located that you want to decrypt?"
-file_with_message_to_decrypt = gets.chomp
+file_with_message_to_decrypt = ARGV[0]
 message = File.read(file_with_message_to_decrypt)
-puts "Where do you want to write your decrypted message in?"
-file_to_write_to = gets.chomp
+file_to_write_to = ARGV[1]
 decrypted_message = File.open(file_to_write_to, "w")
-puts "What is the key for decryption?"
-key = gets.chomp.to_s
-puts "What is the date for decryption?"
-date = gets.chomp.to_s
+key = ARGV[2]
+date = ARGV[3]
 
 decryption = enigma.decrypt(message, key, date)
 decrypted_message.write(decryption[:decryption])
