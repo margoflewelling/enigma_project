@@ -4,7 +4,7 @@ enigma = Enigma.new
 puts "Where is the file located that you want to encrypt?"
 file_with_message_to_encrypt = gets.chomp
 message = File.read(file_with_message_to_encrypt)
-puts "Where is the file you want to write your encrypted message in?"
+puts "What file do you want to write your encrypted message in?"
 file_to_write_to = gets.chomp
 encrypted_message = File.open(file_to_write_to, "w")
 encrypted_message.write((enigma.encrypt(message))[:encryption])
