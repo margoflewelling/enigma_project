@@ -35,4 +35,15 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, @enigma.final_shift("02715", "040895")
   end
 
+  def test_it_can_split_message_by_character
+    expected = ["h", "e", "l", "l", "o", " ", "w", "o", "r", "l", "d"]
+    assert_equal expected, @enigma.split_message("hello world")
+    assert_equal ["e", "r", " ", "*", ")"], @enigma.split_message("er *)")
+  end
+
+  def test_it_can_encrypt_message
+    assert_equal "keder ohulw", @enigma.encrypt_message("hello world", "02715", "040895")
+    assert_equal "pysgdmxtlssfdrzh", @enigma.encrypt_message("my name is margo", "02715", "040895")
+  end
+
 end
