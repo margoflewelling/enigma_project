@@ -61,4 +61,40 @@ class Enigma
      encrypted
   end
 
+  def decrypt_message(message, key, date)
+    message_letters = split_message(message)
+    decrypted = ""
+    loop do
+      final_shift(key, date).each do |letter, shift|
+        index = alphabet.index(message_letters[0])
+        if alphabet.include?(message_letters[0])
+         decrypted << alphabet.rotate(-shift)[index]
+        else
+           decrypted << message_letters[0]
+        end
+        message_letters = message_letters.rotate(1)
+        break if decrypted.length == message_letters.length
+      end
+      break if decrypted.length == message_letters.length
+    end
+    decrypted
+  end
+
+  def decrypt(message, key, date = today)
+    decryption = {}
+    decryption[:decryption] = decrypt_message(message, key, date)
+    decryption[:key] = key
+    decryption[:date] = date
+    decryption
+  end
+
+  def encrypt(message, key = create_random_key, date = today)
+    encryption = {}
+    encryption[:encryption] = encrypt_message(message, key, date)
+    encryption[:key] = key
+    encryption[:date] = date
+    encryption
+  end
+
+
 end
