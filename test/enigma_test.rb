@@ -1,6 +1,7 @@
 require_relative 'test_helper'
 require './lib/enigma'
 require 'mocha/minitest'
+require 'date'
 
 class EnigmaTest < Minitest::Test
 
