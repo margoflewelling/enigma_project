@@ -61,33 +61,6 @@ class Enigma
    encrypted
   end
 
-  # def encrypt_message(message, key, date)
-  #   message_letters = split_message(message)
-  #   loop do
-  #     create_cryption("forward", "encryption", message_letters, key, date)
-  #     break if encrypted.length == message_letters.length
-  #   end
-  # end
-  #
-  #
-  # def create_cryption(direction, new_string, message_letters, key, date)
-  #   new_string = ""
-  #   final_shift(key, date).each do |letter, shift|
-  #     index = alphabet.index(message_letters[0])
-  #     if alphabet.include?(message_letters[0])
-  #       shift = -shift if direction == "backward"
-  #      new_string << alphabet.rotate(shift)[index]
-  #     else
-  #     new_string << message_letters[0]
-  #     end
-  #     message_letters = message_letters.rotate(1)
-  #     break if new_string.length == message_letters.length
-  #   end
-  #   new_string
-  # end
-
-
-
   def decrypt_message(message, key, date)
     message_letters = split_message(message)
     decrypted = ""
@@ -134,6 +107,4 @@ class Enigma
   def today
     Date.today.strftime("%m%d%y")
   end
-
-
 end

@@ -56,11 +56,13 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_decrypt
     expected = {decryption: "hello world", key: "02715", date: "040895"}
+    
     assert_equal expected, @enigma.decrypt("keder ohulw", "02715", "040895")
   end
 
   def test_it_can_encrypt
     expected = {encryption: "keder ohulw", key: "02715", date: "040895"}
+
     assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
   end
 
@@ -68,6 +70,7 @@ class EnigmaTest < Minitest::Test
     assert_kind_of String, @enigma.create_random_key
     assert_equal 5, @enigma.create_random_key.length
     @enigma.stubs(:rand).returns(60)
+
     assert_equal "00060", @enigma.create_random_key
   end
 
@@ -75,6 +78,7 @@ class EnigmaTest < Minitest::Test
     assert_kind_of String, @enigma.today
     assert_equal 6, @enigma.today.length
     Date.stubs(:today).returns(Date.new(2019, 4, 27))
+
     assert_equal "042719", @enigma.today
   end
 
@@ -87,19 +91,14 @@ class EnigmaTest < Minitest::Test
     expected2 = {:encryption => "sorqzjbtbvj", :key => "30605", :date => "030220"}
     @enigma.stubs(:create_random_key).returns("30605")
     @enigma.stubs(:today).returns("030220")
+
     assert_equal expected2, @enigma.encrypt("hello world")
   end
 
   def test_it_can_decrypt_without_date
     expected = {:decryption=>"hello world", :key=>"53734", :date=>"022520"}
     @enigma.stubs(:today).returns("022520")
+
     assert_equal expected, @enigma.decrypt("gsdsnnovqzw", "53734")
   end
-
-  def test_creating_cryption
-    skip
-    assert_equal "sor", @enigma.create_cryption("forward", "encryption", ["h", "e", "l"], "30605", "030220")
-    assert_equal "hel", @enigma.create_cryption("backward", "decryption", ["s", "o", "r"], "30605", "030220")
-  end
-
 end
