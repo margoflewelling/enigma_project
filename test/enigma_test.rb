@@ -61,5 +61,19 @@ class EnigmaTest < Minitest::Test
     assert_equal expected, @enigma.encrypt("hello world", "02715", "040895")
   end
 
+  def test_creating_a_random_key
+    assert_kind_of String, @enigma.create_random_key
+    assert_equal 5, @enigma.create_random_key.length
+    @enigma.stubs(:rand).returns(60)
+    assert_equal "00060", @enigma.create_random_key
+  end
+
+  def test_today
+    assert_kind_of String, @enigma.today
+    assert_equal 6, @enigma.today.length
+    Date.stubs(:today).returns(Date.new(2019, 4, 27))
+    assert_equal "042719", @enigma.today
+  end
+
 
 end

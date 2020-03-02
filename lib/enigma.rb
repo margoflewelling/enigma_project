@@ -96,5 +96,17 @@ class Enigma
     encryption
   end
 
+  def create_random_key
+    random_key = rand(1..100000).to_s
+    until random_key.length == 5 do
+      random_key.prepend("0")
+    end
+    random_key
+  end
+
+  def today
+    Date.today.strftime("%m%d%y")
+  end
+
 
 end
